@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf256fe1647a2834facd0740c9826020, type: 3}
+  m_Name: Level_19
+  m_EditorClassIdentifier: 
+  Rows: 10
+  Cols: 10
+  Clues:
+  - Position: {x: 3, y: 0}
+    Value: 5
+    RegionId: 0
+  - Position: {x: 1, y: 1}
+    Value: 4
+    RegionId: 1
+  - Position: {x: 0, y: 9}
+    Value: 4
+    RegionId: 2
+  - Position: {x: 5, y: 2}
+    Value: 4
+    RegionId: 3
+  - Position: {x: 7, y: 4}
+    Value: 14
+    RegionId: 4
+  - Position: {x: 3, y: 2}
+    Value: 6
+    RegionId: 5
+  - Position: {x: 4, y: 3}
+    Value: 6
+    RegionId: 6
+  - Position: {x: 2, y: 9}
+    Value: 2
+    RegionId: 7
+  - Position: {x: 9, y: 1}
+    Value: 6
+    RegionId: 8
+  - Position: {x: 1, y: 3}
+    Value: 10
+    RegionId: 9
+  - Position: {x: 2, y: 7}
+    Value: 9
+    RegionId: 10
+  - Position: {x: 6, y: 9}
+    Value: 4
+    RegionId: 11
+  - Position: {x: 7, y: 8}
+    Value: 3
+    RegionId: 12
+  - Position: {x: 7, y: 0}
+    Value: 5
+    RegionId: 13
+  - Position: {x: 3, y: 8}
+    Value: 4
+    RegionId: 14
+  - Position: {x: 5, y: 6}
+    Value: 3
+    RegionId: 15
+  - Position: {x: 9, y: 7}
+    Value: 8
+    RegionId: 16
+  - Position: {x: 8, y: 9}
+    Value: 3
+    RegionId: 17
+  Solution:
+  - RegionId: 0
+    Min: {x: 0, y: 0}
+    Max: {x: 4, y: 0}
+  - RegionId: 1
+    Min: {x: 0, y: 1}
+    Max: {x: 1, y: 2}
+  - RegionId: 2
+    Min: {x: 0, y: 8}
+    Max: {x: 1, y: 9}
+  - RegionId: 3
+    Min: {x: 5, y: 1}
+    Max: {x: 5, y: 4}
+  - RegionId: 4
+    Min: {x: 6, y: 1}
+    Max: {x: 7, y: 7}
+  - RegionId: 5
+    Min: {x: 2, y: 1}
+    Max: {x: 4, y: 2}
+  - RegionId: 6
+    Min: {x: 2, y: 3}
+    Max: {x: 4, y: 4}
+  - RegionId: 7
+    Min: {x: 2, y: 8}
+    Max: {x: 2, y: 9}
+  - RegionId: 8
+    Min: {x: 8, y: 1}
+    Max: {x: 9, y: 3}
+  - RegionId: 9
+    Min: {x: 0, y: 3}
+    Max: {x: 1, y: 7}
+  - RegionId: 10
+    Min: {x: 2, y: 5}
+    Max: {x: 4, y: 7}
+  - RegionId: 11
+    Min: {x: 5, y: 8}
+    Max: {x: 6, y: 9}
+  - RegionId: 12
+    Min: {x: 7, y: 8}
+    Max: {x: 9, y: 8}
+  - RegionId: 13
+    Min: {x: 5, y: 0}
+    Max: {x: 9, y: 0}
+  - RegionId: 14
+    Min: {x: 3, y: 8}
+    Max: {x: 4, y: 9}
+  - RegionId: 15
+    Min: {x: 5, y: 5}
+    Max: {x: 5, y: 7}
+  - RegionId: 16
+    Min: {x: 8, y: 4}
+    Max: {x: 9, y: 7}
+  - RegionId: 17
+    Min: {x: 7, y: 9}
+    Max: {x: 9, y: 9}

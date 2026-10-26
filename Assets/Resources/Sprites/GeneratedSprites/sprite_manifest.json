@@ -1,0 +1,653 @@
+[
+  {
+    "name": "Logo_Shikacat_Full",
+    "folder": "01_Branding",
+    "file": "01_Branding/Logo_Shikacat_Full.png",
+    "source_bbox_xywh": [
+      48,
+      38,
+      564,
+      221
+    ],
+    "sprite_size_wh": [
+      564,
+      221
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "App_Icon_Mascot",
+    "folder": "01_Branding",
+    "file": "01_Branding/App_Icon_Mascot.png",
+    "source_bbox_xywh": [
+      650,
+      59,
+      198,
+      201
+    ],
+    "sprite_size_wh": [
+      198,
+      201
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "Btn_Play",
+    "folder": "02_Action_Buttons",
+    "file": "02_Action_Buttons/Btn_Play.png",
+    "source_bbox_xywh": [
+      36,
+      306,
+      322,
+      141
+    ],
+    "sprite_size_wh": [
+      322,
+      141
+    ],
+    "border_lbrt": [
+      65,
+      35,
+      65,
+      35
+    ]
+  },
+  {
+    "name": "Btn_DailyChallenge",
+    "folder": "02_Action_Buttons",
+    "file": "02_Action_Buttons/Btn_DailyChallenge.png",
+    "source_bbox_xywh": [
+      386,
+      302,
+      234,
+      82
+    ],
+    "sprite_size_wh": [
+      234,
+      82
+    ],
+    "border_lbrt": [
+      24,
+      20,
+      65,
+      20
+    ]
+  },
+  {
+    "name": "Btn_Levels",
+    "folder": "02_Action_Buttons",
+    "file": "02_Action_Buttons/Btn_Levels.png",
+    "source_bbox_xywh": [
+      620,
+      302,
+      232,
+      79
+    ],
+    "sprite_size_wh": [
+      232,
+      79
+    ],
+    "border_lbrt": [
+      60,
+      18,
+      60,
+      18
+    ]
+  },
+  {
+    "name": "Btn_Shop",
+    "folder": "02_Action_Buttons",
+    "file": "02_Action_Buttons/Btn_Shop.png",
+    "source_bbox_xywh": [
+      620,
+      375,
+      232,
+      80
+    ],
+    "sprite_size_wh": [
+      232,
+      80
+    ],
+    "border_lbrt": [
+      60,
+      18,
+      60,
+      18
+    ]
+  },
+  {
+    "name": "Btn_Settings",
+    "folder": "03_Feature_Buttons",
+    "file": "03_Feature_Buttons/Btn_Settings.png",
+    "source_bbox_xywh": [
+      37,
+      483,
+      125,
+      133
+    ],
+    "sprite_size_wh": [
+      125,
+      133
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "Btn_Leaderboard",
+    "folder": "03_Feature_Buttons",
+    "file": "03_Feature_Buttons/Btn_Leaderboard.png",
+    "source_bbox_xywh": [
+      155,
+      482,
+      132,
+      135
+    ],
+    "sprite_size_wh": [
+      132,
+      135
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "Btn_Skins",
+    "folder": "03_Feature_Buttons",
+    "file": "03_Feature_Buttons/Btn_Skins.png",
+    "source_bbox_xywh": [
+      283,
+      484,
+      115,
+      129
+    ],
+    "sprite_size_wh": [
+      115,
+      129
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "Btn_NoAds",
+    "folder": "03_Feature_Buttons",
+    "file": "03_Feature_Buttons/Btn_NoAds.png",
+    "source_bbox_xywh": [
+      396,
+      483,
+      117,
+      130
+    ],
+    "sprite_size_wh": [
+      117,
+      130
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "Btn_Sound",
+    "folder": "03_Feature_Buttons",
+    "file": "03_Feature_Buttons/Btn_Sound.png",
+    "source_bbox_xywh": [
+      510,
+      485,
+      114,
+      127
+    ],
+    "sprite_size_wh": [
+      114,
+      127
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "Panel_Main_PawBg",
+    "folder": "04_HUD_And_Panels",
+    "file": "04_HUD_And_Panels/Panel_Main_PawBg.png",
+    "source_bbox_xywh": [
+      35,
+      655,
+      521,
+      267
+    ],
+    "sprite_size_wh": [
+      521,
+      267
+    ],
+    "border_lbrt": [
+      45,
+      45,
+      45,
+      45
+    ]
+  },
+  {
+    "name": "Badge_Ribbon_New",
+    "folder": "04_HUD_And_Panels",
+    "file": "04_HUD_And_Panels/Badge_Ribbon_New.png",
+    "source_bbox_xywh": [
+      560,
+      659,
+      126,
+      125
+    ],
+    "sprite_size_wh": [
+      126,
+      125
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "HUD_Coin_Counter",
+    "folder": "04_HUD_And_Panels",
+    "file": "04_HUD_And_Panels/HUD_Coin_Counter.png",
+    "source_bbox_xywh": [
+      676,
+      672,
+      184,
+      84
+    ],
+    "sprite_size_wh": [
+      184,
+      84
+    ],
+    "border_lbrt": [
+      72,
+      20,
+      28,
+      20
+    ]
+  },
+  {
+    "name": "HUD_Heart_Bar",
+    "folder": "04_HUD_And_Panels",
+    "file": "04_HUD_And_Panels/HUD_Heart_Bar.png",
+    "source_bbox_xywh": [
+      674,
+      758,
+      184,
+      73
+    ],
+    "sprite_size_wh": [
+      184,
+      73
+    ],
+    "border_lbrt": [
+      68,
+      18,
+      25,
+      18
+    ]
+  },
+  {
+    "name": "UI_ProgressBar_Paw",
+    "folder": "04_HUD_And_Panels",
+    "file": "04_HUD_And_Panels/UI_ProgressBar_Paw.png",
+    "source_bbox_xywh": [
+      625,
+      547,
+      238,
+      57
+    ],
+    "sprite_size_wh": [
+      238,
+      57
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "UI_Stars_Group_3of5",
+    "folder": "04_HUD_And_Panels",
+    "file": "04_HUD_And_Panels/UI_Stars_Group_3of5.png",
+    "source_bbox_xywh": [
+      637,
+      498,
+      217,
+      50
+    ],
+    "sprite_size_wh": [
+      217,
+      50
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "Icon_Star_Active",
+    "folder": "04_HUD_And_Panels",
+    "file": "04_HUD_And_Panels/Icon_Star_Active.png",
+    "source_bbox_xywh": [
+      637,
+      498,
+      51,
+      50
+    ],
+    "sprite_size_wh": [
+      51,
+      50
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "Icon_Star_Inactive",
+    "folder": "04_HUD_And_Panels",
+    "file": "04_HUD_And_Panels/Icon_Star_Inactive.png",
+    "source_bbox_xywh": [
+      763,
+      499,
+      49,
+      48
+    ],
+    "sprite_size_wh": [
+      49,
+      48
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "CatBlock_Blue_2x2",
+    "folder": "05_Puzzle_Cat_Blocks",
+    "file": "05_Puzzle_Cat_Blocks/CatBlock_Blue_2x2.png",
+    "source_bbox_xywh": [
+      42,
+      964,
+      119,
+      110
+    ],
+    "sprite_size_wh": [
+      119,
+      110
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "CatBlock_Pink_TShape",
+    "folder": "05_Puzzle_Cat_Blocks",
+    "file": "05_Puzzle_Cat_Blocks/CatBlock_Pink_TShape.png",
+    "source_bbox_xywh": [
+      160,
+      965,
+      140,
+      154
+    ],
+    "sprite_size_wh": [
+      140,
+      154
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "CatBlock_Green_L_Small",
+    "folder": "05_Puzzle_Cat_Blocks",
+    "file": "05_Puzzle_Cat_Blocks/CatBlock_Green_L_Small.png",
+    "source_bbox_xywh": [
+      300,
+      965,
+      125,
+      114
+    ],
+    "sprite_size_wh": [
+      125,
+      114
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "CatBlock_Green_L_Long",
+    "folder": "05_Puzzle_Cat_Blocks",
+    "file": "05_Puzzle_Cat_Blocks/CatBlock_Green_L_Long.png",
+    "source_bbox_xywh": [
+      42,
+      1065,
+      148,
+      110
+    ],
+    "sprite_size_wh": [
+      148,
+      110
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "CatBlock_Blue_LShape",
+    "folder": "05_Puzzle_Cat_Blocks",
+    "file": "05_Puzzle_Cat_Blocks/CatBlock_Blue_LShape.png",
+    "source_bbox_xywh": [
+      206,
+      1064,
+      126,
+      111
+    ],
+    "sprite_size_wh": [
+      126,
+      111
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "CatBlock_Orange_LShape",
+    "folder": "05_Puzzle_Cat_Blocks",
+    "file": "05_Puzzle_Cat_Blocks/CatBlock_Orange_LShape.png",
+    "source_bbox_xywh": [
+      348,
+      1062,
+      126,
+      113
+    ],
+    "sprite_size_wh": [
+      126,
+      113
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "CatBlock_Orange_Pair",
+    "folder": "05_Puzzle_Cat_Blocks",
+    "file": "05_Puzzle_Cat_Blocks/CatBlock_Orange_Pair.png",
+    "source_bbox_xywh": [
+      489,
+      1061,
+      127,
+      116
+    ],
+    "sprite_size_wh": [
+      127,
+      116
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "VFX_Sparkles_Cluster",
+    "folder": "06_VFX_And_Particles",
+    "file": "06_VFX_And_Particles/VFX_Sparkles_Cluster.png",
+    "source_bbox_xywh": [
+      500,
+      962,
+      101,
+      96
+    ],
+    "sprite_size_wh": [
+      101,
+      96
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "VFX_PawPrints_Cluster",
+    "folder": "06_VFX_And_Particles",
+    "file": "06_VFX_And_Particles/VFX_PawPrints_Cluster.png",
+    "source_bbox_xywh": [
+      622,
+      961,
+      101,
+      97
+    ],
+    "sprite_size_wh": [
+      101,
+      97
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "VFX_StarBurst_Small",
+    "folder": "06_VFX_And_Particles",
+    "file": "06_VFX_And_Particles/VFX_StarBurst_Small.png",
+    "source_bbox_xywh": [
+      749,
+      960,
+      100,
+      101
+    ],
+    "sprite_size_wh": [
+      100,
+      101
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "VFX_PawBurst_Circle",
+    "folder": "06_VFX_And_Particles",
+    "file": "06_VFX_And_Particles/VFX_PawBurst_Circle.png",
+    "source_bbox_xywh": [
+      619,
+      1063,
+      109,
+      109
+    ],
+    "sprite_size_wh": [
+      109,
+      109
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "VFX_Star_Glow_Large",
+    "folder": "06_VFX_And_Particles",
+    "file": "06_VFX_And_Particles/VFX_Star_Glow_Large.png",
+    "source_bbox_xywh": [
+      748,
+      1068,
+      102,
+      100
+    ],
+    "sprite_size_wh": [
+      102,
+      100
+    ],
+    "border_lbrt": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+]

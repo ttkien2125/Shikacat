@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e12feb05b73b041b0eaf471fb5bb7e, type: 3}
+  m_Name: ThemeDatabase
+  m_EditorClassIdentifier: 
+  _themes:
+  - name: BabyBlue
+    boxSprite: {fileID: 21300000, guid: 4a9b7a0b078f5224f8a47231f731ca03, type: 3}
+    catSprite: {fileID: 21300000, guid: 60902b0a152f8d24f9f5bd046ceb632a, type: 3}
+    catSolvedSprite: {fileID: 21300000, guid: d04a19787459d5e4cbd9e638d07611f2, type: 3}
+  - name: Blue
+    boxSprite: {fileID: 21300000, guid: 32214b0647204ad49a788d3a8c40192e, type: 3}
+    catSprite: {fileID: 21300000, guid: f1e20e24c981bd147b09c2f4188a92e3, type: 3}
+    catSolvedSprite: {fileID: 21300000, guid: e9978921f3a915a48afe269159f5f53e, type: 3}
+  - name: ElectricBlue
+    boxSprite: {fileID: 21300000, guid: 9bac13228c6f72745a18d13452921c4b, type: 3}
+    catSprite: {fileID: 21300000, guid: 5681b486fd9ad644895e761022ae9e65, type: 3}
+    catSolvedSprite: {fileID: 21300000, guid: 22e2a1116df006043b3e742818374035, type: 3}
+  - name: Green
+    boxSprite: {fileID: 21300000, guid: 60ecf9600280c21499c2e9377aec9ae9, type: 3}
+    catSprite: {fileID: 21300000, guid: 10e2bd6ca234bc146935bdd7bd18e077, type: 3}
+    catSolvedSprite: {fileID: 21300000, guid: f7648297d4abf9d49b22e381899ace34, type: 3}
+  - name: Lime
+    boxSprite: {fileID: 21300000, guid: 8d920eaefbdc48041a9842eedf964e48, type: 3}
+    catSprite: {fileID: 21300000, guid: eb1bba8c27cce1a4b90f8dfbc5b7347a, type: 3}
+    catSolvedSprite: {fileID: 21300000, guid: 57d0d3f04ceb20141b13d874dade3218, type: 3}
+  - name: Orange
+    boxSprite: {fileID: 21300000, guid: ee0ec06c6d8cc9347a9ecf3fa750e8c9, type: 3}
+    catSprite: {fileID: 21300000, guid: 24fb3ce5a39bcbb4197e53f1a18ab6ea, type: 3}
+    catSolvedSprite: {fileID: 21300000, guid: 4d004bf212cf2e348a721a01ecd46ea2, type: 3}
+  - name: Pink
+    boxSprite: {fileID: 21300000, guid: 2fea68b49e8fee14fa1617f911992111, type: 3}
+    catSprite: {fileID: 21300000, guid: 486a6b247300a2344948033ca8fec806, type: 3}
+    catSolvedSprite: {fileID: 21300000, guid: f8f58dc5ce5d4c24eb4552d9d985d43a, type: 3}
+  - name: Purple
+    boxSprite: {fileID: 21300000, guid: edc003d6c3ed4214dbf59b8eba9bb3a7, type: 3}
+    catSprite: {fileID: 21300000, guid: 1c824b08f1e41bb4998c9ab47f209d6b, type: 3}
+    catSolvedSprite: {fileID: 21300000, guid: adf57739437399443b9aac2a02122c66, type: 3}
+  - name: Red
+    boxSprite: {fileID: 21300000, guid: 6c7b953d2fd14c94cbb089d3a5b7c1cd, type: 3}
+    catSprite: {fileID: 21300000, guid: c8a586fde167f1248a1efb663fc9302a, type: 3}
+    catSolvedSprite: {fileID: 21300000, guid: 02f9e523525b5b0479e2aff3d5d0e4ee, type: 3}
+  - name: Teal
+    boxSprite: {fileID: 21300000, guid: 60d275aac4b00a4488af08b396983a4e, type: 3}
+    catSprite: {fileID: 21300000, guid: 13f881ce355b69648a2a6f16c67a5e1b, type: 3}
+    catSolvedSprite: {fileID: 21300000, guid: 8a8e16c8a9c19014698101a8a3bd7297, type: 3}
+  - name: WarmPink
+    boxSprite: {fileID: 21300000, guid: e72ca006b4d035449b011b80cb66a9e7, type: 3}
+    catSprite: {fileID: 21300000, guid: ca276858caeeffc4bb130a4558e168aa, type: 3}
+    catSolvedSprite: {fileID: 21300000, guid: 6eb4f9f051b8cf94aa78bbe7fcae22e1, type: 3}
+  - name: Yellow
+    boxSprite: {fileID: 21300000, guid: e564f109d4631094b8d10bee4270420c, type: 3}
+    catSprite: {fileID: 21300000, guid: dcdad86555c23cb4b8160e9c69e28cb6, type: 3}
+    catSolvedSprite: {fileID: 21300000, guid: 20a58e4298f53dd409314cd3a2605cb6, type: 3}

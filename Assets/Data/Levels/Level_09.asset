@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf256fe1647a2834facd0740c9826020, type: 3}
+  m_Name: Level_09
+  m_EditorClassIdentifier: 
+  Rows: 6
+  Cols: 6
+  Clues:
+  - Position: {x: 1, y: 0}
+    Value: 5
+    RegionId: 0
+  - Position: {x: 1, y: 2}
+    Value: 6
+    RegionId: 1
+  - Position: {x: 5, y: 4}
+    Value: 8
+    RegionId: 2
+  - Position: {x: 3, y: 5}
+    Value: 4
+    RegionId: 3
+  - Position: {x: 5, y: 0}
+    Value: 2
+    RegionId: 4
+  - Position: {x: 1, y: 1}
+    Value: 5
+    RegionId: 5
+  - Position: {x: 1, y: 5}
+    Value: 6
+    RegionId: 6
+  Solution:
+  - RegionId: 0
+    Min: {x: 0, y: 0}
+    Max: {x: 4, y: 0}
+  - RegionId: 1
+    Min: {x: 0, y: 2}
+    Max: {x: 2, y: 3}
+  - RegionId: 2
+    Min: {x: 4, y: 2}
+    Max: {x: 5, y: 5}
+  - RegionId: 3
+    Min: {x: 3, y: 2}
+    Max: {x: 3, y: 5}
+  - RegionId: 4
+    Min: {x: 5, y: 0}
+    Max: {x: 5, y: 1}
+  - RegionId: 5
+    Min: {x: 0, y: 1}
+    Max: {x: 4, y: 1}
+  - RegionId: 6
+    Min: {x: 0, y: 4}
+    Max: {x: 2, y: 5}
