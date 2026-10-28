@@ -11,6 +11,7 @@ public class SettingsPopup : UIPopup
     [SerializeField] private ToggleSwitch _soundsToggle;
     [SerializeField] private ToggleSwitch _hapticsToggle;
     [SerializeField] private Button _restartButton;
+    [SerializeField] private Button _menuButton;
     [SerializeField] private Button _termsButton;
     [SerializeField] private Button _privacyButton;
 
@@ -29,6 +30,16 @@ public class SettingsPopup : UIPopup
         {
             _closeButton.onClick.RemoveAllListeners();
             _closeButton.onClick.AddListener(Close);
+        }
+
+        if (_backdrop != null)
+        {
+            Button backdropBtn = _backdrop.GetComponent<Button>();
+            if (backdropBtn != null)
+            {
+                backdropBtn.onClick.RemoveAllListeners();
+                backdropBtn.onClick.AddListener(Close);
+            }
         }
 
         // Hook up toggles with PlayerPrefs persistence
@@ -83,6 +94,13 @@ public class SettingsPopup : UIPopup
             _restartButton.onClick.AddListener(OnRestartClicked);
         }
 
+        // Menu / Back to Menu button
+        if (_menuButton != null)
+        {
+            _menuButton.onClick.RemoveAllListeners();
+            _menuButton.onClick.AddListener(OnMenuClicked);
+        }
+
         // Stubs: T&C and Privacy
         if (_termsButton != null)
         {
@@ -108,5 +126,30 @@ public class SettingsPopup : UIPopup
         Close();
         OnRestartRequested?.Invoke();
         _toastCallback?.Invoke("Level Restarted!");
+    }
+
+    private void OnMenuClicked()
+    {
+        Close();
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Menu")
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+        }
+    }
+
+    public void SetRestartVisible(bool visible)
+    {
+        if (_restartButton != null)
+        {
+            _restartButton.gameObject.SetActive(visible);
+        }
+    }
+
+    public void SetMenuButtonVisible(bool visible)
+    {
+        if (_menuButton != null)
+        {
+            _menuButton.gameObject.SetActive(visible);
+        }
     }
 }

@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
         _mainCamera = Camera.main;
         _boxManager.Init();
 
+
         _tutorialGhost = GetComponent<TutorialGhostManager>() ?? gameObject.AddComponent<TutorialGhostManager>();
         _tutorialGhost.Init(_boxManager, _inputHandler, _themes, _gridSize);
 
@@ -48,6 +49,9 @@ public class GameManager : MonoBehaviour
         _levelManager.Init();
 
         UIManager.OnRestartRequested += RestartCurrentLevel;
+
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
     }
 
     private void OnDestroy()

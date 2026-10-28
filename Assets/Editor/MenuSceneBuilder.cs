@@ -111,41 +111,41 @@ public static class MenuSceneBuilder
         Sprite heartBarSpr = LoadSprite("HUD_Heart_Bar");
         GameObject heartBarObj = CreateUIElement("HUD_Heart_Bar", topHudObj.transform);
         RectTransform heartBarRt = heartBarObj.GetComponent<RectTransform>();
-        heartBarRt.anchoredPosition = new Vector2(-340f, 0f);
-        heartBarRt.sizeDelta = new Vector2(240f, 84f);
+        heartBarRt.anchoredPosition = new Vector2(-340f, 1f);
+        heartBarRt.sizeDelta = new Vector2(212f, 84f);
         Image heartBarImg = heartBarObj.AddComponent<Image>();
         heartBarImg.sprite = heartBarSpr;
         heartBarImg.preserveAspect = true;
 
         GameObject heartsTextObj = CreateUIElement("HeartsText", heartBarObj.transform);
         RectTransform heartsTextRt = heartsTextObj.GetComponent<RectTransform>();
-        heartsTextRt.anchorMin = new Vector2(0.45f, 0f);
-        heartsTextRt.anchorMax = new Vector2(1f, 1f);
-        heartsTextRt.pivot = new Vector2(1f, 0.5f);
-        heartsTextRt.anchoredPosition = new Vector2(-25f, 2f);
-        heartsTextRt.sizeDelta = new Vector2(120f, 50f);
+        heartsTextRt.anchorMin = new Vector2(0.5f, 0.5f);
+        heartsTextRt.anchorMax = new Vector2(0.5f, 0.5f);
+        heartsTextRt.pivot = new Vector2(0.5f, 0.5f);
+        heartsTextRt.anchoredPosition = new Vector2(64f, -1f);
+        heartsTextRt.sizeDelta = new Vector2(60f, 44f);
         TextMeshProUGUI heartsTmp = heartsTextObj.AddComponent<TextMeshProUGUI>();
-        SetupTMP(heartsTmp, tmpFont, "5/5", 30, TextAlignmentOptions.Right, new Color32(92, 54, 39, 255));
+        SetupTMP(heartsTmp, tmpFont, "5/5", 28, TextAlignmentOptions.Center, new Color32(92, 54, 39, 255));
 
         // Coins Display
         Sprite coinCounterSpr = LoadSprite("HUD_Coin_Counter");
         GameObject coinCounterObj = CreateUIElement("HUD_Coin_Counter", topHudObj.transform);
         RectTransform coinCounterRt = coinCounterObj.GetComponent<RectTransform>();
-        coinCounterRt.anchoredPosition = new Vector2(-80f, 0f);
-        coinCounterRt.sizeDelta = new Vector2(240f, 84f);
+        coinCounterRt.anchoredPosition = new Vector2(-118f, 0f);
+        coinCounterRt.sizeDelta = new Vector2(184f, 84f);
         Image coinCounterImg = coinCounterObj.AddComponent<Image>();
         coinCounterImg.sprite = coinCounterSpr;
         coinCounterImg.preserveAspect = true;
 
         GameObject coinsTextObj = CreateUIElement("CoinsText", coinCounterObj.transform);
         RectTransform coinsTextRt = coinsTextObj.GetComponent<RectTransform>();
-        coinsTextRt.anchorMin = new Vector2(0.45f, 0f);
-        coinsTextRt.anchorMax = new Vector2(1f, 1f);
-        coinsTextRt.pivot = new Vector2(1f, 0.5f);
-        coinsTextRt.anchoredPosition = new Vector2(-25f, 2f);
-        coinsTextRt.sizeDelta = new Vector2(120f, 50f);
+        coinsTextRt.anchorMin = new Vector2(0.5f, 0.5f);
+        coinsTextRt.anchorMax = new Vector2(0.5f, 0.5f);
+        coinsTextRt.pivot = new Vector2(0.5f, 0.5f);
+        coinsTextRt.anchoredPosition = new Vector2(32f, 0f);
+        coinsTextRt.sizeDelta = new Vector2(90f, 44f);
         TextMeshProUGUI coinsTmp = coinsTextObj.AddComponent<TextMeshProUGUI>();
-        SetupTMP(coinsTmp, tmpFont, "450", 30, TextAlignmentOptions.Right, new Color32(92, 54, 39, 255));
+        SetupTMP(coinsTmp, tmpFont, "450", 28, TextAlignmentOptions.Center, new Color32(92, 54, 39, 255));
 
         // Top-Right Utility: Sound Toggle Button
         Sprite soundSpr = LoadSprite("Btn_Sound");
@@ -345,7 +345,23 @@ public static class MenuSceneBuilder
 
         toastObj.SetActive(false);
 
-        // 14. Serialize references into MainMenuManager
+        // 14. Settings Popup (Instantiate unified prefab if available, else build)
+        GameObject popupPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/SettingsPopup.prefab");
+        SettingsPopup settingsPopup;
+        if (popupPrefab != null)
+        {
+            GameObject popupInstance = (GameObject)PrefabUtility.InstantiatePrefab(popupPrefab, canvasObj.transform);
+            popupInstance.name = "SettingsPopup";
+            StretchFull(popupInstance.GetComponent<RectTransform>());
+            popupInstance.SetActive(false);
+            settingsPopup = popupInstance.GetComponent<SettingsPopup>();
+        }
+        else
+        {
+            settingsPopup = BuildSettingsPopup(canvasObj, tmpFont);
+        }
+
+        // 15. Serialize references into MainMenuManager
         SerializedObject soMenu = new SerializedObject(menuMgr);
         soMenu.FindProperty("_playButton").objectReferenceValue = playBtn;
         soMenu.FindProperty("_dailyChallengeButton").objectReferenceValue = dailyBtn;
@@ -365,16 +381,18 @@ public static class MenuSceneBuilder
         soMenu.FindProperty("_mascotTransform").objectReferenceValue = mascotRt;
         soMenu.FindProperty("_playButtonTransform").objectReferenceValue = playBtnRt;
 
+        soMenu.FindProperty("_settingsPopup").objectReferenceValue = settingsPopup;
+
         soMenu.FindProperty("_toastObj").objectReferenceValue = toastObj;
         soMenu.FindProperty("_toastText").objectReferenceValue = toastTmp;
         soMenu.FindProperty("_toastCanvasGroup").objectReferenceValue = toastCg;
         soMenu.ApplyModifiedProperties();
 
-        // 15. Save Scene
+        // 16. Save Scene
         EditorSceneManager.SaveScene(scene, MenuScenePath);
         Debug.Log($"[MenuSceneBuilder] Scene successfully built and saved to {MenuScenePath}!");
 
-        // 16. Update EditorBuildSettings
+        // 17. Update EditorBuildSettings
         UpdateBuildSettings();
     }
 
@@ -415,6 +433,10 @@ public static class MenuSceneBuilder
         // Fallback to Resources/Sprites
         Sprite fallback = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/Resources/Sprites/{spriteName}.png");
         if (fallback != null) return fallback;
+
+        // Fallback to Resources/Sprites/UI
+        Sprite uiFallback = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/Resources/Sprites/UI/{spriteName}.png");
+        if (uiFallback != null) return uiFallback;
 
         Debug.LogWarning($"[MenuSceneBuilder] Could not find Sprite '{spriteName}'!");
         return null;
@@ -477,5 +499,188 @@ public static class MenuSceneBuilder
         tmp.alignment = align;
         tmp.color = color;
         tmp.raycastTarget = false;
+    }
+
+    private static SettingsPopup BuildSettingsPopup(GameObject canvasObj, TMP_FontAsset tmpFont)
+    {
+        // 1. Root Popup GameObject
+        GameObject popupObj = CreateUIElement("SettingsPopup", canvasObj.transform);
+        StretchFull(popupObj.GetComponent<RectTransform>());
+        SettingsPopup sp = popupObj.AddComponent<SettingsPopup>();
+
+        // 2. Backdrop (dark overlay with fade and click-to-close)
+        GameObject backdropObj = CreateUIElement("Backdrop", popupObj.transform);
+        StretchFull(backdropObj.GetComponent<RectTransform>());
+        Image backdropImg = backdropObj.AddComponent<Image>();
+        backdropImg.color = new Color(0f, 0f, 0f, 0.72f);
+        CanvasGroup backdropCg = backdropObj.AddComponent<CanvasGroup>();
+        Button backdropBtn = backdropObj.AddComponent<Button>();
+        backdropBtn.targetGraphic = backdropImg;
+
+        // 3. Card Panel
+        Sprite cardSpr = LoadSprite("Panel_Popup_Body");
+        GameObject cardObj = CreateUIElement("Card", popupObj.transform);
+        RectTransform cardRt = cardObj.GetComponent<RectTransform>();
+        cardRt.anchorMin = new Vector2(0.5f, 0.5f);
+        cardRt.anchorMax = new Vector2(0.5f, 0.5f);
+        cardRt.pivot = new Vector2(0.5f, 0.5f);
+        cardRt.anchoredPosition = Vector2.zero;
+        cardRt.sizeDelta = new Vector2(820f, 1040f);
+        Image cardImg = cardObj.AddComponent<Image>();
+        cardImg.sprite = cardSpr;
+        cardImg.type = Image.Type.Sliced;
+
+        // 4. Header Banner & Title
+        Sprite headerSpr = LoadSprite("Panel_Popup_Header");
+        GameObject headerObj = CreateUIElement("HeaderBanner", cardObj.transform);
+        RectTransform headerRt = headerObj.GetComponent<RectTransform>();
+        headerRt.anchorMin = new Vector2(0.5f, 1f);
+        headerRt.anchorMax = new Vector2(0.5f, 1f);
+        headerRt.pivot = new Vector2(0.5f, 1f);
+        headerRt.anchoredPosition = new Vector2(0f, -20f);
+        headerRt.sizeDelta = new Vector2(750f, 170f);
+        Image headerImg = headerObj.AddComponent<Image>();
+        headerImg.sprite = headerSpr;
+        headerImg.preserveAspect = true;
+
+        GameObject titleObj = CreateUIElement("Title", cardObj.transform);
+        RectTransform titleRt = titleObj.GetComponent<RectTransform>();
+        titleRt.anchorMin = new Vector2(0.5f, 1f);
+        titleRt.anchorMax = new Vector2(0.5f, 1f);
+        titleRt.pivot = new Vector2(0.5f, 1f);
+        titleRt.anchoredPosition = new Vector2(0f, -65f);
+        titleRt.sizeDelta = new Vector2(500f, 80f);
+        TextMeshProUGUI titleTmp = titleObj.AddComponent<TextMeshProUGUI>();
+        SetupTMP(titleTmp, tmpFont, "SETTINGS", 44, TextAlignmentOptions.Center, new Color32(255, 248, 237, 255));
+
+        // 5. Close Button ('X')
+        Sprite closeSpr = LoadSprite("Button_Close");
+        Button closeBtn = CreateImageButton("CloseButton", cardObj.transform, closeSpr, new Vector2(-34f, -52f), new Vector2(104f, 104f));
+        RectTransform closeRt = closeBtn.GetComponent<RectTransform>();
+        closeRt.anchorMin = new Vector2(1f, 1f);
+        closeRt.anchorMax = new Vector2(1f, 1f);
+        closeRt.pivot = new Vector2(0.5f, 0.5f);
+
+        // 6. Settings Rows: Music, Sounds, Haptics
+        Sprite musicSpr = LoadSprite("Icon_Music");
+        Sprite hapticsSpr = LoadSprite("Icon_Haptics");
+        ToggleSwitch musicToggle = CreateSettingRow("Row_Music", cardObj.transform, "MUSIC", musicSpr, -230f, tmpFont);
+        ToggleSwitch soundsToggle = CreateSettingRow("Row_Sounds", cardObj.transform, "SOUNDS", musicSpr, -340f, tmpFont);
+        ToggleSwitch hapticsToggle = CreateSettingRow("Row_Haptics", cardObj.transform, "HAPTICS", hapticsSpr, -450f, tmpFont);
+
+        // 7. Action Button: "BACK TO MENU"
+        Sprite btnSecSpr = LoadSprite("Button_Secondary");
+        Button backToMenuBtn = CreateImageButton("MenuButton", cardObj.transform, btnSecSpr, new Vector2(0f, 170f), new Vector2(660f, 110f));
+        RectTransform backRt = backToMenuBtn.GetComponent<RectTransform>();
+        backRt.anchorMin = new Vector2(0.5f, 0f);
+        backRt.anchorMax = new Vector2(0.5f, 0f);
+        backRt.pivot = new Vector2(0.5f, 0f);
+        backToMenuBtn.image.type = Image.Type.Sliced;
+
+        GameObject backTextObj = CreateUIElement("Text", backToMenuBtn.transform);
+        StretchFull(backTextObj.GetComponent<RectTransform>());
+        TextMeshProUGUI backTmp = backTextObj.AddComponent<TextMeshProUGUI>();
+        SetupTMP(backTmp, tmpFont, "BACK TO MENU", 36, TextAlignmentOptions.Center, new Color32(255, 248, 237, 255));
+
+        // 8. Footer (T&C, Privacy)
+        GameObject footerObj = CreateUIElement("Footer", cardObj.transform);
+        RectTransform footerRt = footerObj.GetComponent<RectTransform>();
+        footerRt.anchorMin = new Vector2(0f, 0f);
+        footerRt.anchorMax = new Vector2(1f, 0f);
+        footerRt.pivot = new Vector2(0.5f, 0f);
+        footerRt.anchoredPosition = new Vector2(0f, 35f);
+        footerRt.sizeDelta = new Vector2(0f, 90f);
+
+        GameObject termsObj = CreateUIElement("TermsButton", footerObj.transform);
+        RectTransform termsRt = termsObj.GetComponent<RectTransform>();
+        termsRt.anchorMin = new Vector2(0f, 0.5f);
+        termsRt.anchorMax = new Vector2(0f, 0.5f);
+        termsRt.pivot = new Vector2(0f, 0.5f);
+        termsRt.anchoredPosition = new Vector2(60f, 0f);
+        termsRt.sizeDelta = new Vector2(250f, 50f);
+        TextMeshProUGUI termsTmp = termsObj.AddComponent<TextMeshProUGUI>();
+        SetupTMP(termsTmp, tmpFont, "Terms & Conditions", 22, TextAlignmentOptions.Left, new Color32(160, 140, 130, 255));
+        Button termsBtn = termsObj.AddComponent<Button>();
+
+        GameObject privacyObj = CreateUIElement("PrivacyButton", footerObj.transform);
+        RectTransform privacyRt = privacyObj.GetComponent<RectTransform>();
+        privacyRt.anchorMin = new Vector2(1f, 0.5f);
+        privacyRt.anchorMax = new Vector2(1f, 0.5f);
+        privacyRt.pivot = new Vector2(1f, 0.5f);
+        privacyRt.anchoredPosition = new Vector2(-60f, 0f);
+        privacyRt.sizeDelta = new Vector2(250f, 50f);
+        TextMeshProUGUI privacyTmp = privacyObj.AddComponent<TextMeshProUGUI>();
+        SetupTMP(privacyTmp, tmpFont, "Privacy Policy", 22, TextAlignmentOptions.Right, new Color32(160, 140, 130, 255));
+        Button privacyBtn = privacyObj.AddComponent<Button>();
+
+        // 9. Link all references into SettingsPopup via SerializedObject
+        SerializedObject soPopup = new SerializedObject(sp);
+        soPopup.FindProperty("_backdrop").objectReferenceValue = backdropCg;
+        soPopup.FindProperty("_card").objectReferenceValue = cardRt;
+        soPopup.FindProperty("_closeButton").objectReferenceValue = closeBtn;
+        soPopup.FindProperty("_musicToggle").objectReferenceValue = musicToggle;
+        soPopup.FindProperty("_soundsToggle").objectReferenceValue = soundsToggle;
+        soPopup.FindProperty("_hapticsToggle").objectReferenceValue = hapticsToggle;
+        soPopup.FindProperty("_menuButton").objectReferenceValue = backToMenuBtn;
+        soPopup.FindProperty("_termsButton").objectReferenceValue = termsBtn;
+        soPopup.FindProperty("_privacyButton").objectReferenceValue = privacyBtn;
+        soPopup.ApplyModifiedProperties();
+
+        popupObj.SetActive(false);
+        return sp;
+    }
+
+    private static ToggleSwitch CreateSettingRow(string name, Transform parent, string labelText, Sprite iconSpr, float yPos, TMP_FontAsset font)
+    {
+        GameObject rowObj = CreateUIElement(name, parent);
+        RectTransform rowRt = rowObj.GetComponent<RectTransform>();
+        rowRt.anchorMin = new Vector2(0f, 1f);
+        rowRt.anchorMax = new Vector2(1f, 1f);
+        rowRt.pivot = new Vector2(0.5f, 1f);
+        rowRt.anchoredPosition = new Vector2(0f, yPos);
+        rowRt.sizeDelta = new Vector2(-160f, 80f);
+
+        if (iconSpr != null)
+        {
+            GameObject iconObj = CreateDecorImage("Icon", rowObj.transform, iconSpr, new Vector2(40f, 0f), new Vector2(60f, 60f), Color.white);
+            RectTransform iconRt = iconObj.GetComponent<RectTransform>();
+            iconRt.anchorMin = new Vector2(0f, 0.5f);
+            iconRt.anchorMax = new Vector2(0f, 0.5f);
+            iconRt.pivot = new Vector2(0.5f, 0.5f);
+        }
+
+        GameObject labelObj = CreateUIElement("Label", rowObj.transform);
+        RectTransform labelRt = labelObj.GetComponent<RectTransform>();
+        labelRt.anchorMin = new Vector2(0f, 0.5f);
+        labelRt.anchorMax = new Vector2(0f, 0.5f);
+        labelRt.pivot = new Vector2(0f, 0.5f);
+        labelRt.anchoredPosition = new Vector2(90f, 0f);
+        labelRt.sizeDelta = new Vector2(300f, 60f);
+        TextMeshProUGUI labelTmp = labelObj.AddComponent<TextMeshProUGUI>();
+        SetupTMP(labelTmp, font, labelText, 32, TextAlignmentOptions.Left, new Color32(92, 54, 39, 255));
+
+        Sprite toggleOnSpr = LoadSprite("Toggle_On");
+        Sprite toggleOffSpr = LoadSprite("Toggle_Off");
+
+        GameObject toggleObj = CreateUIElement("ToggleSwitch", rowObj.transform);
+        RectTransform toggleRt = toggleObj.GetComponent<RectTransform>();
+        toggleRt.anchorMin = new Vector2(1f, 0.5f);
+        toggleRt.anchorMax = new Vector2(1f, 0.5f);
+        toggleRt.pivot = new Vector2(1f, 0.5f);
+        toggleRt.anchoredPosition = new Vector2(0f, 0f);
+        toggleRt.sizeDelta = new Vector2(140f, 70f);
+
+        Image toggleImg = toggleObj.AddComponent<Image>();
+        toggleImg.sprite = toggleOnSpr;
+        toggleImg.preserveAspect = true;
+
+        ToggleSwitch ts = toggleObj.AddComponent<ToggleSwitch>();
+        SerializedObject soTs = new SerializedObject(ts);
+        soTs.FindProperty("_image").objectReferenceValue = toggleImg;
+        soTs.FindProperty("_onSprite").objectReferenceValue = toggleOnSpr;
+        soTs.FindProperty("_offSprite").objectReferenceValue = toggleOffSpr;
+        soTs.ApplyModifiedProperties();
+
+        return ts;
     }
 }

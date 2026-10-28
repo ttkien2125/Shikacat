@@ -72,6 +72,7 @@ public class MainMenuManager : MonoBehaviour
         if (_settingsPopup != null)
         {
             _settingsPopup.Init(ShowToast);
+            _settingsPopup.SetRestartVisible(false);
             _settingsPopup.gameObject.SetActive(false);
         }
 

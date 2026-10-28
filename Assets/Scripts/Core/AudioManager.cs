@@ -45,21 +45,25 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            InitAudioSources();
-            LoadSettings();
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
+            return;
         }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        InitAudioSources();
+        LoadSettings();
     }
 
     private void Start()
     {
+        if (Instance != this)
+        {
+            return;
+        }
+
         if (_musicEnabled && _bgmClip != null)
         {
             PlayBgm();
@@ -114,14 +118,20 @@ public class AudioManager : MonoBehaviour
         _sfxSource.mute = !enabled;
     }
 
-    public void PlayBgm()
+    public void PlayBgm(bool forceRestart = false)
     {
-        if (_bgmClip == null)
+        if (_bgmClip == null || _musicSource == null)
+        {
+            return;
+        }
+
+        if (!forceRestart && _musicSource.isPlaying && _musicSource.clip == _bgmClip)
         {
             return;
         }
 
         _musicSource.clip = _bgmClip;
+        _musicSource.mute = !_musicEnabled;
         _musicSource.Play();
     }
 
