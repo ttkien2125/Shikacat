@@ -284,6 +284,11 @@ public class GameManager : MonoBehaviour
         }
         HapticsManager.Trigger();
 
+        if (_levelManager != null)
+        {
+            LevelProgress.SetLevelCompleted(_levelManager.CurrentLevelIndex, true);
+        }
+
         yield return _winPopupDelay;
 
         // 5. Open Win popup
@@ -459,6 +464,7 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Reset Level Progress to Level 1")]
     public void ResetLevelProgress()
     {
+        LevelProgress.ResetAllProgress();
         if (_levelManager != null)
         {
             _levelManager.LoadLevelByIndex(0);

@@ -20,8 +20,9 @@ public class WinPopup : UIPopup
 
     private Action _onNextLevel;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         if (_nextLevelButton != null)
         {
             _nextLevelButton.onClick.RemoveAllListeners();

@@ -30,12 +30,17 @@ public class LevelManager : MonoBehaviour
             CurrentLevelIndex = 0;
         }
 
+        LevelProgress.SetHighestUnlockedLevel(CurrentLevelIndex);
+
         NotifyLevelStarted();
     }
 
     public void AdvanceToNextLevel()
     {
         StopAllCoroutines();
+
+        // Mark the completed level
+        LevelProgress.SetLevelCompleted(CurrentLevelIndex, true);
 
         CurrentLevelIndex++;
         if (_levels != null && _levels.Count > 0 && CurrentLevelIndex >= _levels.Count)
@@ -44,6 +49,7 @@ public class LevelManager : MonoBehaviour
         }
 
         PlayerPrefs.SetInt(GameConstants.Prefs.CurrentLevel, CurrentLevelIndex);
+        LevelProgress.SetHighestUnlockedLevel(CurrentLevelIndex);
         PlayerPrefs.Save();
 
         NotifyLevelStarted();
@@ -55,7 +61,6 @@ public class LevelManager : MonoBehaviour
         {
             return;
         }
-
 
         StopAllCoroutines();
         CurrentLevelIndex = Mathf.Clamp(index, 0, _levels.Count - 1);

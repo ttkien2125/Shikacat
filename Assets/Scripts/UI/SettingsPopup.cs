@@ -1,12 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingsPopup : UIPopup
 {
     public event Action OnRestartRequested;
 
-    [SerializeField] private Button _closeButton;
     [SerializeField] private ToggleSwitch _musicToggle;
     [SerializeField] private ToggleSwitch _soundsToggle;
     [SerializeField] private ToggleSwitch _hapticsToggle;
@@ -25,23 +25,6 @@ public class SettingsPopup : UIPopup
 
     private void SetupListeners()
     {
-        // Hook up close button
-        if (_closeButton != null)
-        {
-            _closeButton.onClick.RemoveAllListeners();
-            _closeButton.onClick.AddListener(Close);
-        }
-
-        if (_backdrop != null)
-        {
-            Button backdropBtn = _backdrop.GetComponent<Button>();
-            if (backdropBtn != null)
-            {
-                backdropBtn.onClick.RemoveAllListeners();
-                backdropBtn.onClick.AddListener(Close);
-            }
-        }
-
         // Hook up toggles with PlayerPrefs persistence
         bool musicOn = PlayerPrefs.GetInt(GameConstants.Prefs.MusicEnabled, 1) == 1;
         bool soundsOn = PlayerPrefs.GetInt(GameConstants.Prefs.SoundsEnabled, 1) == 1;
@@ -57,7 +40,6 @@ public class SettingsPopup : UIPopup
                     AudioManager.Instance.SetMusicEnabled(val);
                 }
 
-
                 _toastCallback?.Invoke(val ? "Music: ON" : "Music: OFF");
             };
         }
@@ -71,7 +53,6 @@ public class SettingsPopup : UIPopup
                 {
                     AudioManager.Instance.SetSoundsEnabled(val);
                 }
-
 
                 _toastCallback?.Invoke(val ? "Sounds: ON" : "Sounds: OFF");
             };
@@ -131,9 +112,9 @@ public class SettingsPopup : UIPopup
     private void OnMenuClicked()
     {
         Close();
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Menu")
+        if (SceneManager.GetActiveScene().name != GameConstants.Scenes.Menu)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene(GameConstants.Scenes.Menu);
         }
     }
 

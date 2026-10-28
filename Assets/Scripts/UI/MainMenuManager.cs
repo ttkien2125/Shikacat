@@ -33,6 +33,7 @@ public class MainMenuManager : MonoBehaviour
 
     [Header("Popups & Notifications")]
     [SerializeField] private SettingsPopup _settingsPopup;
+    [SerializeField] private LevelsPopup _levelsPopup;
     [SerializeField] private GameObject _toastObj;
     [SerializeField] private TextMeshProUGUI _toastText;
     [SerializeField] private CanvasGroup _toastCanvasGroup;
@@ -76,6 +77,12 @@ public class MainMenuManager : MonoBehaviour
             _settingsPopup.gameObject.SetActive(false);
         }
 
+        if (_levelsPopup != null)
+        {
+            _levelsPopup.Init(ShowToast);
+            _levelsPopup.gameObject.SetActive(false);
+        }
+
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayBgm();
@@ -104,12 +111,7 @@ public class MainMenuManager : MonoBehaviour
 
         if (_levelsButton != null)
         {
-            _levelsButton.onClick.AddListener(() =>
-            {
-                PlayClickSfx();
-                int lvl = PlayerPrefs.GetInt(GameConstants.Prefs.CurrentLevel, 0) + 1;
-                ShowToast($"Current progress: Level {lvl}");
-            });
+            _levelsButton.onClick.AddListener(OnLevelsClicked);
         }
 
 
@@ -163,7 +165,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void UpdatePlayerStats()
     {
-        int levelIndex = PlayerPrefs.GetInt(GameConstants.Prefs.CurrentLevel, 0);
+        int levelIndex = LevelProgress.GetHighestUnlockedLevel();
         if (_currentLevelText != null)
         {
             _currentLevelText.SetText("LEVEL {0}", levelIndex + 1);
@@ -171,13 +173,13 @@ public class MainMenuManager : MonoBehaviour
 
         if (_coinsText != null)
         {
-            int coins = PlayerPrefs.GetInt("Shikacat_Coins", 450);
+            int coins = PlayerPrefs.GetInt(GameConstants.Prefs.Coins, GameConstants.Defaults.StartingCoins);
             _coinsText.text = coins.ToString("N0");
         }
 
         if (_heartsText != null)
         {
-            _heartsText.text = "5/5";
+            _heartsText.text = GameConstants.Defaults.Hearts;
         }
     }
 
@@ -188,10 +190,15 @@ public class MainMenuManager : MonoBehaviour
             return;
         }
 
-
         _isStartingGame = true;
 
         PlayClickSfx();
+
+        int current = LevelProgress.CurrentLevelIndex;
+        if (LevelProgress.IsLevelCompleted(current))
+        {
+            LevelProgress.CurrentLevelIndex = LevelProgress.HighestUnlockedIndex;
+        }
 
         _ = StartCoroutine(StartGameRoutine());
     }
@@ -203,7 +210,21 @@ public class MainMenuManager : MonoBehaviour
             yield return UIAnimationHelper.PunchScale(_playButtonTransform, _playButtonBaseScale, 0.12f, 0.16f);
         }
 
-        SceneManager.LoadScene("Gameplay");
+        SceneManager.LoadScene(GameConstants.Scenes.Gameplay);
+    }
+
+    private void OnLevelsClicked()
+    {
+        PlayClickSfx();
+        if (_levelsPopup != null)
+        {
+            _levelsPopup.Open();
+        }
+        else
+        {
+            int lvl = LevelProgress.GetHighestUnlockedLevel() + 1;
+            ShowToast($"Current progress: Level {lvl}");
+        }
     }
 
     private void OnSettingsClicked()
